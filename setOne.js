@@ -98,13 +98,13 @@ A function can return another function. Let's create one!
 
 Create a function called 'multiplyingFactory' that takes a number as a param. The function returns another function that takes another number as a param. 
 
-The inner function should run this logic: if the first number passing in is greater than and equal to 5, print the multiplication of the first and second numbers. If not, print "Cannot multiply: the first number is smaller than 5." 
+The inner function should run this logic: if the first number passing in is greater than or equal to 5, print the multiplication of the first and second numbers. If not, print "Cannot multiply: the first number is smaller than 5." 
 */
 
 // CODE HERE
 function multiplyingFactory(num1){
     return function multiply(num2){
-        if(num1 >= 5){
+        if(num1 > 5 || num1 === 5){
             console.log(num1 * num2)
         }else{
             console.log('Cannot multiply: the first number is smaller than 5')

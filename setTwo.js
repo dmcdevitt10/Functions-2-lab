@@ -6,15 +6,17 @@
 */
 
 // CODE HERE
-
+function multiply(num1, num2, callback){
+  callback(num1 * num2)
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// multiply(4, 3, answer => {
-//   console.log('The answer is ' + answer) //should console.log 12
-// })
+multiply(4, 3, answer => {
+console.log('The answer is ' + answer) //should console.log 12
+})
 
 
 
@@ -36,15 +38,17 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE 
-
+function first(array, callback){
+  callback(array[0])
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// first(names, firstName => {
-//   console.log('The first name in names is ' + firstName)
-// })
+first(names, firstName => {
+console.log('The first name in names is ' + firstName)
+})
 
 
 
@@ -56,15 +60,17 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE
-
+function last(array, callback){
+  callback(array[array.length - 1])
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// last(names, lastName => {
-//   console.log('The last name in names is ' + lastName)
-// })
+last(names, lastName => {
+   console.log('The last name in names is ' + lastName)
+ })
 
 
 
@@ -78,19 +84,25 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE 
-
+function contains(array, name, callback){
+  if(array.includes(name)){
+    callback(true)
+  }else{
+    callback(false)
+  }
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// contains(names, 'Colt', result => {
-//   if(result === true){
-//     console.log('Colt is in the array')
-//   } else {
-//     console.log('Colt is not in the array')
-//   }
-// })
+contains(names, 'Colt', result => {
+  if(result === true){
+    console.log('Colt is in the array')
+  } else {
+    console.log('Colt is not in the array')
+  }
+})
 
 
 
@@ -103,6 +115,16 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE
+function uniq(array, callback){
+  for(let i = 0; i < array.length; i++){
+    for(let j = i + 1; j < array.length; j++){
+      if(array[i] === array[j]){
+        array.splice(j, 1)
+      }
+    }
+  }
+  callback(array)
+}
 
 /*
   Invoke the uniq function, passing in the names array from above and a callback function.
@@ -112,7 +134,9 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE
-
+uniq(names, (uniqArr) => {
+  console.log(`The new names array with all the duplicate items removed is ${uniqArr}`)
+})
 
 
 ////////// PROBLEM 6 //////////
@@ -123,7 +147,11 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE 
-
+function each(array, callback){
+  for(let i = 0; i < array.length; i++){
+    callback(array[i], i)
+  }
+}
 
 /*
   Invoke the each function, passing in the names array and a callback function.
@@ -133,7 +161,9 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE
-
+each(names, (item, index) => {
+  console.log(`The item at index ${index} is ${item}`)
+})
 
 
 
@@ -159,6 +189,11 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE
+function addingFactory(num1){
+  return function add(num2){
+    return num1 + num2
+  }
+}
 
 /*
   Now that you have addingFactory, you can create other
@@ -173,6 +208,7 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE
+const addTen = addingFactory(10)
 
 /*
   Now the inner function is stored in the addTen variable! 
@@ -185,7 +221,8 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE
-
+console.log(addTen(5))
+console.log(addTen(8))
 /*
   Let's make another function from the addingFactory. 
 
@@ -198,8 +235,8 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE
-
-
+const addTwentyFive = addingFactory(25)
+console.log(addTwentyFive(45))
 
 
 ////////// CHALLENGE 2 //////////
@@ -234,13 +271,21 @@ var users = [
 // Do not edit the code above.
 
 // CODE HERE 
-
+function getUserById(array, id, callback){
+  let userIndex = 0
+  for(let i = 0; i < array.length; i++){
+    if(array[i].id === id){
+      userIndex = array[i]
+    }
+  }
+  callback(userIndex)
+}
 
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-getUserById(users, '16t', user => {
+  getUserById(users, '16t', user => {
   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
 })
